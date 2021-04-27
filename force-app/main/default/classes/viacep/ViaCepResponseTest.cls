@@ -1,5 +1,5 @@
 @IsTest
-private class ViaCepResponseDTOTest {
+private class ViaCepResponseTest {
     @IsTest
     static void testParse() {
         String json = '{'+
@@ -15,7 +15,7 @@ private class ViaCepResponseDTOTest {
                 '      \"siafi\": \"7107\"'+
                 '    }';
 
-        ViaCepResponseDTO obj = ViaCepResponseDTO.parse(json);
+        ViaCepResponse obj = ViaCepResponse.parse(json);
         System.assert(obj != null, 'Returned object is not null.');
         System.assertEquals('01001-000', obj.cep, 'The CEP should be the same.');
     }

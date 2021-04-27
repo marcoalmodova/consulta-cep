@@ -1,5 +1,6 @@
 public inherited sharing class ViaCepConnector {
     private static final String VIA_CEP_ENDPOINT_SETTING_NAME = 'ViaCepEndpoint';
+    private static final String WRONG_NUMBER_OF_DIGITS_ERROR_MSG = Label.CEP_Numero_de_digitos_incorreto;
 
     private static String viaCepEndpoint {
         get {
@@ -15,8 +16,8 @@ public inherited sharing class ViaCepConnector {
         return SettingService.getSetting(VIA_CEP_ENDPOINT_SETTING_NAME).Value__c;
     }
 
-    public static ViaCepResponseDTO getCEPData(String cep){
-        ViaCepResponseDTO cepResponse = new ViaCepResponseDTO();
+    public static ViaCepResponse getCEPData(String cep){
+        ViaCepResponse cepResponse = new ViaCepResponse();
 
         try{
             HttpRequest req = new HttpRequest();
@@ -26,10 +27,10 @@ public inherited sharing class ViaCepConnector {
             HTTPResponse res = new Http().send(req);
 
             if(res.getStatusCode() == 200){
-                cepResponse = ViaCepResponseDTO.parse(res.getBody());
+                cepResponse = ViaCepResponse.parse(res.getBody());
             }else if(res.getStatusCode() == 400) {
                 //when the status code is 400 it means that we tried to get a response with the wrong number of cep digits
-                //todo: throw custom error message
+                throw new ViaCepConnectorException(WRONG_NUMBER_OF_DIGITS_ERROR_MSG);
             }
         }catch(Exception e){
             throw e;

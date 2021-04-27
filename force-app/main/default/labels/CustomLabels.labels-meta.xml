@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>CEP_Nao_Existe</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>CEP - Não Existe</shortDescription>
+        <value>O CEP que você forneceu não foi encontrado.</value>
+    </labels>
+    <labels>
+        <fullName>CEP_Numero_de_digitos_incorreto</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>CEP - Número de dígitos incorreto</shortDescription>
+        <value>O CEP fornecido não corresponde ao padrão esperado. Busque o CEP seguindo o formato de 8 dígitos, sem espaços, hífens ou caracteres especiais. Exemplo: 01001000.</value>
+    </labels>
+</CustomLabels>
